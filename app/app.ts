@@ -1,0 +1,21 @@
+/// <reference path="../typings/angular2/angular2.d.ts" />
+
+import {Component, View, bootstrap} from "angular2/angular2";
+import {PostsService} from "common/services/postsService";
+
+@Component({
+    selector: "my-app"
+})
+@View({
+    template: '<h1>Hello {{ name }}</h1>'
+})
+// Component controller
+class MyAppComponent {
+    name: string;
+
+    constructor() {
+        this.name = 'Alice';
+    }
+}
+
+bootstrap(MyAppComponent);
