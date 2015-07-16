@@ -1,20 +1,24 @@
 /// <reference path="../typings/angular2/angular2.d.ts" />
 
-import {Component, View, bootstrap} from "angular2/angular2";
+import {Component, View, bootstrap, NgFor} from "angular2/angular2";
 import {PostsService} from "common/services/postsService";
 
 @Component({
-    selector: "my-app"
+    selector: "my-app",
+    appInjector: [
+        PostsService
+    ]
 })
 @View({
-    template: '<h1>Hello {{ name }}</h1>'
+    templateUrl: "app.html",
+    directives: [NgFor]
 })
 // Component controller
 class MyAppComponent {
-    name: string;
+    postsService: PostsService;
 
-    constructor() {
-        this.name = 'Alice';
+    constructor(postsService: PostsService) {
+        this.postsService = postsService;
     }
 }
 
