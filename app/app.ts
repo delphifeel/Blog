@@ -1,14 +1,12 @@
 /// <reference path="../typings/angular2/angular2.d.ts" />
 
 import {Component, View, bootstrap, NgFor} from "angular2/angular2";
-import {PostsService} from "common/services/postsService";
-import {Http, httpInjectables} from "angular2/angular2";
+import {PostsService, postsServiceInjectables} from "common/services/postsService";
 
 @Component({
     selector: "my-app",
     appInjector: [
-        PostsService,
-        Http
+        PostsService
     ]
 })
 @View({
@@ -18,13 +16,11 @@ import {Http, httpInjectables} from "angular2/angular2";
 class MyAppComponent {
     postsService: PostsService;
 
-    constructor(postsService: PostsService, http: Http) {
+    constructor(postsService: PostsService) {
         this.postsService = postsService;
-        http.get("../server/posts.json");
     }
 }
 
 bootstrap(MyAppComponent, [
-    PostsService,
-    httpInjectables
+    postsServiceInjectables
 ]);
