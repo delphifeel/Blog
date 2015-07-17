@@ -2,11 +2,13 @@
 
 import {Component, View, bootstrap, NgFor} from "angular2/angular2";
 import {PostsService} from "common/services/postsService";
+import {Http, httpInjectables} from "angular2/angular2";
 
 @Component({
     selector: "my-app",
     appInjector: [
-        PostsService
+        PostsService,
+        Http
     ]
 })
 @View({
@@ -16,9 +18,13 @@ import {PostsService} from "common/services/postsService";
 class MyAppComponent {
     postsService: PostsService;
 
-    constructor(postsService: PostsService) {
+    constructor(postsService: PostsService, http: Http) {
         this.postsService = postsService;
+        http.get("../server/posts.json");
     }
 }
 
-bootstrap(MyAppComponent);
+bootstrap(MyAppComponent, [
+    PostsService,
+    httpInjectables
+]);
