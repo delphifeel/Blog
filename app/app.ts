@@ -13,7 +13,6 @@ import {PostsService} from "common/services/postsService";
     templateUrl: "app.html",
     directives: [NgFor]
 })
-// Component controller
 class MyAppComponent {
     postsService: PostsService;
 
