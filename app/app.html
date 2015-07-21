@@ -1,3 +1,5 @@
-<div *ng-for="#item of postsService.posts">
-    {{item.title}}
+<a [router-link]="['./home']">Main</a>
+<a [router-link]="['./about']">About</a>
+<div>
+    <router-outlet></router-outlet>
 </div>

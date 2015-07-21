@@ -5,12 +5,16 @@ interface IPost {
 }
 
 export class PostsService {
-    posts: Array<IPost>;
+    private posts: Array<IPost>;
 
     constructor(@Inject(Http) http) {
         http.get("server/posts.json").toRx().subscribe((response) => {
             this.posts = response.json();
         });
+    }
+
+    getPosts() {
+        return this.posts;
     }
 }
 

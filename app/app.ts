@@ -1,26 +1,30 @@
-/// <reference path="../typings/angular2/angular2.d.ts" />
+/// <reference path="../typings/tsd.d.ts" />
 
-import {Component, View, bootstrap, NgFor} from "angular2/angular2";
-import {PostsService, postsServiceInjectables} from "common/services/postsService";
+import {Component, View, bootstrap} from "angular2/angular2";
+import {RouteConfig, routerInjectables, RouterOutlet, RouterLink} from "angular2/router";
+import {About} from "common/directives/about";
+import {Main, mainInjectables} from "common/directives/main";
 
 @Component({
-    selector: "my-app",
-    appInjector: [
-        PostsService
-    ]
+    selector: "my-app"
 })
 @View({
     templateUrl: "app.html",
-    directives: [NgFor]
+    directives: [
+        RouterOutlet,
+        RouterLink
+    ]
 })
+@RouteConfig([
+    {path: "/about", component: About, as: "about"},
+    {path: "/home", component: Main, as: "home"}
+])
 class MyAppComponent {
-    postsService: PostsService;
-
-    constructor(postsService: PostsService) {
-        this.postsService = postsService;
+    constructor() {
     }
 }
 
 bootstrap(MyAppComponent, [
-    postsServiceInjectables
+    mainInjectables,
+    routerInjectables
 ]);
